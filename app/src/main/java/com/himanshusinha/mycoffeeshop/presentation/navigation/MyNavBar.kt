@@ -35,15 +35,9 @@ fun MyNavBar(navController: NavHostController) {
                 selected = currentRoute == item.routes::class.qualifiedName,
 
                 onClick = {
-
                     navController.navigate(item.routes) {
-
-                        popUpTo(navController.graph.startDestinationId) {
-                            saveState = true
-                        }
-
+                        popUpTo(navController.graph.startDestinationId)
                         launchSingleTop = true
-                        restoreState = true
                     }
                 },
 

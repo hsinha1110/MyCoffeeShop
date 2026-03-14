@@ -1,6 +1,8 @@
 package com.himanshusinha.mycoffeeshop.screens.ProfileScreen
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -10,6 +12,7 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -18,13 +21,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import androidx.navigation.Navigation
 import androidx.navigation.compose.rememberNavController
 import com.himanshusinha.mycoffeeshop.presentation.navigation.MyNavBar
 import com.himanshusinha.mycoffeeshop.presentation.theme.LightBrown
 import com.himanshusinha.mycoffeeshop.presentation.theme.LightGray
+import com.himanshusinha.mycoffeeshop.presentation.ui_components.NavBarRoutes
 
 @Composable
 fun ProfileScreen(navController: NavHostController) {
+    val interactionSource = remember { MutableInteractionSource() }
 
     Scaffold(
         bottomBar = { MyNavBar(navController) }
@@ -112,6 +118,12 @@ fun ProfileScreen(navController: NavHostController) {
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
+                                .clickable(
+                                    interactionSource = interactionSource,
+                                    indication = null
+                                ) {
+                                    navController.navigate(NavBarRoutes.CartScreen)
+                                }
                                 .padding(horizontal = 20.dp, vertical = 12.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
@@ -134,9 +146,16 @@ fun ProfileScreen(navController: NavHostController) {
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
+                                .clickable(
+                                    interactionSource = interactionSource,
+                                    indication = null
+                                ) {
+                                    navController.navigate(NavBarRoutes.FavouriteScreen)
+
+                                }
                                 .padding(horizontal = 20.dp, vertical = 12.dp),
                             verticalAlignment = Alignment.CenterVertically
-                        ) {
+                        )  {
 
                             Icon(
                                 imageVector = Icons.Default.Favorite,
