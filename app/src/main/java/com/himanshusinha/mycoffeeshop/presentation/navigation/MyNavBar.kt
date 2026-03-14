@@ -57,7 +57,7 @@ fun MyNavBar(navController: NavHostController) {
 
                 label = { Text(item.title) },
 
-                alwaysShowLabel = true,
+                alwaysShowLabel = false,
 
                 colors = NavigationBarItemDefaults.colors(
                     selectedIconColor = Color(0xFFC67C4E),

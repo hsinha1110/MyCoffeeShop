@@ -53,18 +53,22 @@ fun DetailScreenBottomAppBar(navController: NavHostController) {
             }
 
             Button(
-                modifier = Modifier.weight(1f),
                 onClick = {
-                    navController.navigate(NavBarRoutes.CartScreen)                },
+                    navController.navigate(NavBarRoutes.CartScreen)               },
+                modifier = Modifier
+                    .fillMaxWidth().weight(1f)
+                    .height(50.dp),
                 shape = RoundedCornerShape(10.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFFC67C4E)
+                    containerColor = Color(0xFFC67C4E),
+                    contentColor = Color.White
                 )
             ) {
                 Text(
-                    text = "Add To Cart",
-                    color = Color.White
+                    text = "Add Cart",
+                    fontSize = 18.sp
                 )
+
             }
         }
     }

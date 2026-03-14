@@ -9,7 +9,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.himanshusinha.mycoffeeshop.R
 import com.himanshusinha.mycoffeeshop.domain.model.Product
 
 @Composable
@@ -54,4 +56,56 @@ fun ProductsGrid(
             }
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ProductsGridPreview() {
+
+    // Sample list of products
+    val sampleProducts = listOf(
+        Product(
+            id = 1,
+            name = "Espresso",
+            description = "Strong and Rich",
+            price = 3.80,
+            imageResource = R.drawable.coffee_1
+        ),
+        Product(
+            id = 2,
+            name = "Latte",
+            description = "Smooth and Creamy",
+            price = 4.50,
+            imageResource = R.drawable.coffee_2
+        ),
+        Product(
+            id = 3,
+            name = "Cappuccino",
+            description = "Rich Espresso with Milk",
+            price = 4.20,
+            imageResource = R.drawable.coffee_3
+        ),
+        Product(
+            id = 4,
+            name = "Americano",
+            description = "With Chocolate",
+            price = 4.00,
+            imageResource = R.drawable.coffee_1
+        )
+    )
+
+    ProductsGrid(
+        products = sampleProducts,
+        topContent = {
+            // Optional top composable
+            androidx.compose.material3.Text(
+                text = "Featured Products",
+                modifier = Modifier.padding(16.dp)
+            )
+        },
+        onProductClick = { product ->
+            // For preview, just log name
+            println("Clicked: ${product.name}")
+        }
+    )
 }

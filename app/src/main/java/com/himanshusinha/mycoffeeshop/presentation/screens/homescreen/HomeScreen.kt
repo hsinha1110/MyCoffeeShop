@@ -1,8 +1,10 @@
 package com.himanshusinha.mycoffeeshop.presentation.screens.homescreen
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -28,6 +30,7 @@ import com.himanshusinha.mycoffeeshop.domain.model.Product
 import com.himanshusinha.mycoffeeshop.presentation.navigation.MyNavBar
 import com.himanshusinha.mycoffeeshop.presentation.ui_components.MySearchBar
 
+@SuppressLint("UnrememberedMutableInteractionSource")
 @Composable
 fun HomeScreen(navController: NavHostController) {
 
@@ -73,7 +76,6 @@ fun HomeScreen(navController: NavHostController) {
             ) {
 
                 item {
-
                     Text(
                         text = "Location",
                         color = Color.Gray,
@@ -83,7 +85,6 @@ fun HomeScreen(navController: NavHostController) {
                     Spacer(modifier = Modifier.height(4.dp))
 
                     Row(verticalAlignment = Alignment.CenterVertically) {
-
                         Text(
                             text = location,
                             color = Color.White,
@@ -118,17 +119,17 @@ fun HomeScreen(navController: NavHostController) {
                 }
 
                 items(products.chunked(2)) { rowItems ->
+                    Row(modifier = Modifier.fillMaxWidth()) {
 
-                    Row(
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-
+                        // Both cards with clickable but no ripple effect
                         ProductCard(
                             product = rowItems[0],
                             modifier = Modifier
                                 .weight(1f)
-                                .clickable() {
-                                    // Handle product click here, e.g. navigate
+                                .clickable(
+                                    interactionSource = MutableInteractionSource(),
+                                    indication = null
+                                ) {
                                     navController.navigate("details/${rowItems[0].id}")
                                 }
                         )
@@ -138,12 +139,14 @@ fun HomeScreen(navController: NavHostController) {
                                 product = rowItems[1],
                                 modifier = Modifier
                                     .weight(1f)
-                                    .clickable {
+                                    .clickable(
+                                        interactionSource = MutableInteractionSource(),
+                                        indication = null
+                                    ) {
                                         navController.navigate("details/${rowItems[1].id}")
                                     }
                             )
                         }
-
                     }
 
                     Spacer(modifier = Modifier.height(12.dp))

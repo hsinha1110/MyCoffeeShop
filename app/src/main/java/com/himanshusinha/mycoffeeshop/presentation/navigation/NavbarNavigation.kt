@@ -1,7 +1,6 @@
 package com.himanshusinha.mycoffeeshop.presentation.navigation
 
 
-
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -10,9 +9,10 @@ import com.himanshusinha.mycoffeeshop.domain.model.Product
 import com.himanshusinha.mycoffeeshop.presentation.screens.detailsscreen.ProductDetails
 import com.himanshusinha.mycoffeeshop.presentation.screens.cart.CartScreen
 import com.himanshusinha.mycoffeeshop.screens.ProfileScreen.ProfileScreen
-import com.himanshusinha.mycoffeeshop.screens.homescreen.FavouriteScreen
 import com.himanshusinha.mycoffeeshop.presentation.screens.homescreen.HomeScreen
 import com.himanshusinha.mycoffeeshop.R
+import com.himanshusinha.mycoffeeshop.presentation.screens.favouritescreen.FavouriteScreen
+import com.himanshusinha.mycoffeeshop.presentation.screens.welcomescreen.WelcomeScreen
 import com.himanshusinha.mycoffeeshop.presentation.ui_components.NavBarRoutes
 
 @Composable
@@ -30,23 +30,27 @@ fun NavbarNavigation() {
     )
     NavHost(
         navController = navController,
-        startDestination = NavBarRoutes.HomeScreen
-    ){
+        startDestination = NavBarRoutes.WelcomeScreen
+    ) {
+
+        composable<NavBarRoutes.WelcomeScreen> {
+            WelcomeScreen(navController)
+        }
 
         composable<NavBarRoutes.HomeScreen> {
-            HomeScreen(navController)
+            HomeScreen(navController = navController)
         }
 
         composable<NavBarRoutes.FavouriteScreen> {
-            FavouriteScreen(navController)
+            FavouriteScreen(navController = navController)
         }
 
         composable<NavBarRoutes.ProfileScreen> {
-            ProfileScreen(navController)
+            ProfileScreen(navController = navController)
         }
 
         composable<NavBarRoutes.CartScreen> {
-            CartScreen(navController = navController, product = null)
+            CartScreen(navController = navController  )
         }
 
         // Details Screen with product object

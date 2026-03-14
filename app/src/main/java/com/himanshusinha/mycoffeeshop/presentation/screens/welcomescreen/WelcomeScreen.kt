@@ -1,4 +1,4 @@
-package com.himanshusinha.mycoffeeshop.welcomescreen
+package com.himanshusinha.mycoffeeshop.presentation.screens.welcomescreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -11,7 +11,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -20,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.himanshusinha.mycoffeeshop.presentation.ui_components.NavBarRoutes
 import com.himanshusinha.mycoffeeshop.R
 
 @Composable
@@ -34,14 +34,13 @@ fun WelcomeScreen(navController1: NavHostController) {
         Image(
             painter = painterResource(R.drawable.image_splash),
             contentDescription = "Splash Screen",
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop
+
         )
 
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 24.dp, vertical = 70.dp),
+                .padding(horizontal = 24.dp, vertical = 50.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Bottom
         ) {
@@ -68,9 +67,7 @@ fun WelcomeScreen(navController1: NavHostController) {
 
             Button(
                 onClick = {
-                    // Example navigation
-                    // navController.navigate("home")
-                },
+                    navController1.navigate(NavBarRoutes.HomeScreen)               },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(50.dp),
@@ -80,7 +77,6 @@ fun WelcomeScreen(navController1: NavHostController) {
                     contentColor = Color.White
                 )
             ) {
-
                 Text(
                     text = "Get Started",
                     fontSize = 18.sp
