@@ -16,7 +16,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.compose.rememberNavController
 import com.himanshusinha.mycoffeeshop.presentation.theme.LightBrown
 import com.himanshusinha.mycoffeeshop.presentation.theme.LightGray
 
@@ -30,7 +29,7 @@ fun CategoryChip(text: String, isSelected: Boolean = false, onSelected: () -> Un
                 RoundedCornerShape(6.dp)
             )
             .clickable { onSelected() }
-            .background(color = if (isSelected) LightBrown else LightGray.copy(alpha = 0.6f)),
+            .background(color = if (isSelected) LightBrown else Color.LightGray),
         contentAlignment = Alignment.Center
     ) {
         Text(text = text, fontSize = 14.sp, fontWeight = FontWeight.SemiBold, maxLines = 1, color = Color.Black)
